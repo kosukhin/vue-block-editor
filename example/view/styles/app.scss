@@ -1,13 +1,13 @@
 .app {
     font-family: arial, sans-serif;
     background: #eee;
-    bottom: 0;
     position: fixed;
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
     box-sizing: border-box;
     padding: 10px;
-    right: 0;
 
     &__editor {
         background: #fff;

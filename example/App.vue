@@ -22,5 +22,5 @@ requestLoad().then((loadResponse) => {
 </template>
 
 <style scoped lang="scss">
-@import './view/styles/app.scss';
+@import './view/styles/app';
 </style>

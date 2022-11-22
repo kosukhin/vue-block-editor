@@ -16,9 +16,12 @@ requestLoad().then((loadResponse) => {
 </script>
 
 <template>
-    <div class="app">
-        <Editor class="app__editor" :html="content.html"/>
-    </div>
+  <div class="app">
+    <Editor
+      class="app__editor"
+      :html="content.html"
+    />
+  </div>
 </template>
 
 <style scoped lang="scss">

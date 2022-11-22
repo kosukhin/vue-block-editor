@@ -17,7 +17,7 @@ requestLoad().then((loadResponse) => {
 
 <template>
     <div class="app">
-        <Editor class="app__editor" :html="content.html" />
+        <Editor class="app__editor" :html="content.html"/>
     </div>
 </template>
 

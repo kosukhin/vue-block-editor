@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import Editor from "@/shared/view/Editor/Editor.vue";
 </script>
 
 <template>
-    <div>Редактор</div>
+    <Editor />
 </template>
 
 <style scoped>

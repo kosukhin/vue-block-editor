@@ -1,4 +1,4 @@
-import {RequestLoadResponse} from "../model/RequestLoadResponse";
+import { RequestLoadResponse } from '../model/RequestLoadResponse'
 
 /**
  * Загрузка информации о редактируемом html
@@ -8,13 +8,13 @@ export const useRequestLoad = () => {
         const response = await fetch('http://localhost/demoload/email/', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            }
+                'Content-Type': 'application/json;charset=utf-8',
+            },
         })
         return await response.json()
     }
 
     return {
-        requestLoad
+        requestLoad,
     }
 }

@@ -1,4 +1,4 @@
 export interface RequestLoadResponse {
-    commonSettings: string[],
+    commonSettings: string[]
     html: string
 }

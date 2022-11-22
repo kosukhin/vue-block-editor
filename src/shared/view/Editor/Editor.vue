@@ -1,19 +1,16 @@
 <script lang="ts" setup>
-import {defineProps} from 'vue';
+import { defineProps } from 'vue'
 
 defineProps({
-        html: {
-            type: String,
-            required: true
-        }
-    })
+    html: {
+        type: String,
+        required: true,
+    },
+})
 </script>
 
 <template>
-  <div class="editor">
-    Редактор
-  </div>
+    <div class="editor">Редактор</div>
 </template>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

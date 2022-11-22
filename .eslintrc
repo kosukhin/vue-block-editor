@@ -5,7 +5,12 @@
         "browser": true
     },
     "plugins": [],
-    "extends": ["eslint:recommended", "plugin:vue/vue3-recommended", "plugin:@typescript-eslint/recommended"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:vue/vue3-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended"
+    ],
     "parserOptions": {
         "parser": "@typescript-eslint/parser",
         "sourceType": "module",

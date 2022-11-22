@@ -1,4 +1,14 @@
 <script lang="ts" setup>
+import {defineProps} from 'vue';
+
+defineProps(
+    {
+        html: {
+            type: String,
+            required: true
+        }
+    }
+)
 </script>
 
 <template>

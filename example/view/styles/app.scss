@@ -1,0 +1,19 @@
+.app {
+    background: #eee;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    padding: 10px;
+    font-family: arial, sans-serif;
+
+    &__editor {
+        max-width: 800px;
+        border: 1px solid #ccc;
+        min-height: 500px;
+        margin: 0 auto;
+        background: #fff;
+    }
+}

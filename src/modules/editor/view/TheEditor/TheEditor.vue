@@ -1,15 +1,13 @@
 <script lang="ts" setup>
 import { ref, toRefs, watch } from 'vue'
-import { useUpdateFrame, frameId } from '@/modules/editor'
+import { useUpdateFrame, frameId, useEditor } from '@/modules/editor'
 import type { Element } from '@/modules/parser'
 import RightBar from '@/modules/editor/modules/rightBar/view/RightBar/RightBar.vue'
 import LeftBar from '@/modules/editor/modules/leftBar/view/LeftBar/LeftBar.vue'
-import { useEditor } from '@/modules/editor/application/useEditor'
 
 const props = defineProps({
     html: {
         type: String,
-        default: '',
         required: true,
     },
 })

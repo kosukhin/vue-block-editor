@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { defineProps, ref, toRefs, watch } from 'vue'
+import { ref, toRefs, watch } from 'vue'
 import { useUpdateFrame, frameId } from '@/modules/editor'
 import type { Element } from '@/modules/parser'
 import RightBar from '@/modules/editor/modules/rightBar/view/RightBar/RightBar.vue'

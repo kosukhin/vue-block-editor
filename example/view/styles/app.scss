@@ -1,4 +1,7 @@
 .app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: arial, sans-serif;
     background: #eee;
     position: fixed;
@@ -11,9 +14,9 @@
 
     &__editor {
         background: #fff;
-        max-width: 800px;
+        width: 1200px;
         border: 1px solid #ccc;
-        min-height: 500px;
+        min-height: 800px;
         margin: 0 auto;
     }
 }

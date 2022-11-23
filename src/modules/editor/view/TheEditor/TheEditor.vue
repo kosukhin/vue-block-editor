@@ -1,24 +1,30 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue'
-import { useInitEditor } from '@/modules/editor'
+import { defineProps, toRefs, watch } from 'vue'
+import { useUpdateFrame } from '@/modules/editor'
+import { frameId } from '@/modules/editor'
 
 const props = defineProps({
     html: {
         type: String,
+        default: '',
         required: true,
     },
 })
 
-const { initEditor } = useInitEditor()
+const { html } = toRefs(props)
+const { updateFrame } = useUpdateFrame()
 
-initEditor(props.html)
+watch(
+    () => html.value,
+    (newHtml) => updateFrame(newHtml)
+)
 </script>
 
 <template>
     <div class="the-editor">
         <div class="the-editor__left-bar">L</div>
         <div class="the-editor__content">
-            <iframe id="editor_content" frameborder="0" />
+            <iframe :id="frameId" class="the-editor__frame" frameborder="0" />
         </div>
         <div class="the-editor__right-bar">R</div>
     </div>

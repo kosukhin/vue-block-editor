@@ -4,7 +4,7 @@ import { useSerializeElement } from '@/modules/parser'
 export const useRenderElement = () => {
     const { serializeElement } = useSerializeElement()
 
-    const renderElement = (root: Element, frameId: string) => {
+    const renderElement = async (root: Element, frameId: string) => {
         const frame = document.getElementById(frameId) as HTMLIFrameElement
         frame.src = 'about:blank'
 

@@ -1,9 +1,35 @@
 .the-editor {
     display: grid;
-    grid-template-columns: 50px 1fr 150px;
+    grid-template-columns: 50px 1fr 200px;
 
     &__left-bar,
     &__right-bar {
+        position: relative;
         background: $grey_93;
+
+        &::before {
+            position: absolute;
+            content: '';
+            top: 0;
+            right: 0;
+            width: 1px;
+            height: 100%;
+            background: $grey_80;
+        }
+    }
+
+    &__right-bar {
+        &::before {
+            left: 0;
+            right: auto;
+        }
+    }
+
+    &__content {
+        display: flex;
+    }
+
+    &__frame {
+        flex: 1
     }
 }

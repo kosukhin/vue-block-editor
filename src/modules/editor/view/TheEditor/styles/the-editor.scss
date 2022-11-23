@@ -1,6 +1,5 @@
 .the-editor {
-    display: grid;
-    grid-template-columns: 50px 1fr 200px;
+    display: flex;
 
     &__left-bar,
     &__right-bar {
@@ -18,7 +17,13 @@
         }
     }
 
+    &__left-bar {
+        width: 50px;
+    }
+
     &__right-bar {
+        width: 200px;
+
         &::before {
             left: 0;
             right: auto;
@@ -27,6 +32,7 @@
 
     &__content {
         display: flex;
+        flex: 1;
     }
 
     &__frame {

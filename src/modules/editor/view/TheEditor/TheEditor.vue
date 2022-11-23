@@ -32,7 +32,7 @@ watch(
         <div class="the-editor__content">
             <iframe :id="frameId" class="the-editor__frame" frameborder="0" />
         </div>
-        <RightBar class="the-editor__right-bar" />
+        <RightBar v-if="root" :root="root" class="the-editor__right-bar" />
     </div>
 </template>
 

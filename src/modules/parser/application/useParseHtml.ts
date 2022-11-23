@@ -1,3 +1,12 @@
+import type { Element } from '@/modules/parser'
+import { parse } from 'parse5'
+
 export const useParseHtml = () => {
-    return {}
+    const parseHtml = (html: string): Element => {
+        return parse(html) as Element
+    }
+
+    return {
+        parseHtml,
+    }
 }

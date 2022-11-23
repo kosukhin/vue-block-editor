@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TheEditor from '@/shared/view/TheEditor/TheEditor.vue'
+import TheEditor from '@/modules/editor/view/TheEditor/TheEditor.vue'
 import { useRequestLoad } from './application'
 import { RequestLoadResponse } from './model'
 import { ref } from 'vue'

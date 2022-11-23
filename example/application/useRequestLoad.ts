@@ -1,4 +1,4 @@
-import { RequestLoadResponse } from '../model/RequestLoadResponse'
+import type { RequestLoadResponse } from '../model'
 
 /**
  * Загрузка информации о редактируемом html

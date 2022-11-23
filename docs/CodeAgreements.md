@@ -6,3 +6,4 @@
 2. Порядок блоков в SFC: script, template, style
 
 3. Нейминг от общего к конкретному, по советам из Vue стайлгайда, это позволяет группировать общие файлы рядом
+https://vuejs.org/style-guide/index.html

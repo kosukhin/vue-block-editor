@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Editor from '@/shared/view/Editor/Editor.vue'
-import { useRequestLoad } from './application/useRequestLoad'
-import { RequestLoadResponse } from './model/RequestLoadResponse'
+import TheEditor from '@/shared/view/TheEditor/TheEditor.vue'
+import { useRequestLoad } from './application'
+import { RequestLoadResponse } from './model'
 import { ref } from 'vue'
 
 const { requestLoad } = useRequestLoad()
@@ -17,7 +17,7 @@ requestLoad().then((loadResponse) => {
 
 <template>
     <div class="app">
-        <Editor class="app__editor" :html="content.html" />
+        <TheEditor class="app__editor" :html="content.html" />
     </div>
 </template>
 

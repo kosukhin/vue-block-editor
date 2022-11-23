@@ -1,0 +1,16 @@
+.right-bar {
+    display: flex;
+    flex-direction: column;
+    gap: $step;
+    padding: $step 5px;
+
+    &__block {
+        border-bottom: 1px solid $grey_80;
+        padding: 0 0 $step;
+        line-height: 1;
+
+        &:last-child {
+            border: none;
+        }
+    }
+}

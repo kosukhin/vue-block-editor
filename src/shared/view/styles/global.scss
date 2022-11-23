@@ -1,0 +1,13 @@
+body {
+    color: $grey_13;
+}
+
+.editor {
+    &__title {
+        display: block;
+        font-weight: 700;
+        border-bottom: 1px solid $grey_80;
+        margin-bottom: $step;
+        padding-bottom: $step;
+    }
+}

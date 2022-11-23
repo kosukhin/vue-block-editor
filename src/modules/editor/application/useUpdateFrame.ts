@@ -9,6 +9,8 @@ export const useUpdateFrame = () => {
     const updateFrame = (html: string) => {
         const root = parseHtml(html)
         renderElement(root, frameId)
+
+        return { root }
     }
 
     return {

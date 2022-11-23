@@ -1,7 +1,9 @@
 <script lang="ts" setup>
-import { defineProps, toRefs, watch } from 'vue'
+import { defineProps, ref, toRefs, watch } from 'vue'
 import { useUpdateFrame, frameId } from '@/modules/editor'
-import { useTranslate } from '@/modules/i18n'
+import type { Element } from '@/modules/parser'
+import RightBar from '@/modules/editor/modules/rightBar/view/RightBar/RightBar.vue'
+import LeftBar from '@/modules/editor/modules/leftBar/view/LeftBar/LeftBar.vue'
 
 const props = defineProps({
     html: {
@@ -13,25 +15,30 @@ const props = defineProps({
 
 const { html } = toRefs(props)
 const { updateFrame } = useUpdateFrame()
-const { translate } = useTranslate()
+const root = ref<Element | null>(null)
 
 watch(
     () => html.value,
-    (newHtml) => updateFrame(newHtml)
+    (newHtml) => {
+        const { root: updatedRoot } = updateFrame(newHtml)
+        root.value = updatedRoot
+    }
 )
 </script>
 
 <template>
     <div class="the-editor">
-        <div class="the-editor__left-bar">L</div>
+        <LeftBar class="the-editor__left-bar" />
         <div class="the-editor__content">
             <iframe :id="frameId" class="the-editor__frame" frameborder="0" />
         </div>
-        <div class="the-editor__right-bar">
-            {{ translate('blocks_tree') }}
-        </div>
+        <RightBar class="the-editor__right-bar" />
     </div>
 </template>
+
+<style lang="scss">
+@import '@/shared/view/styles/global';
+</style>
 
 <style scoped lang="scss">
 @import 'styles/the-editor';

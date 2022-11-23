@@ -1,14 +1,5 @@
-import type { Attribute } from '@/modules/parser/model/Attribute'
+import type { Element as BaseElement } from 'parse5/dist/tree-adapters/default'
 
-export interface Element {
-    nodeName: string
-    childNodes: Element[]
-    editorId?: string
-    attrs?: Attribute[]
-    mode?: string
-    tagName?: string
-    namespaceURI?: string
-    parentNode?: Element
-    value?: string
+export interface Element extends BaseElement {
     onlyEditor?: boolean
 }

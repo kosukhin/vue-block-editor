@@ -11,13 +11,15 @@ const props = defineProps({
 
 const { initEditor } = useInitEditor()
 
-const { root } = initEditor(props.html)
+initEditor(props.html)
 </script>
 
 <template>
     <div class="the-editor">
         <div class="the-editor__left-bar">L</div>
-        <div class="the-editor__content">C</div>
+        <div class="the-editor__content">
+            <iframe id="editor_content" frameborder="0" />
+        </div>
         <div class="the-editor__right-bar">R</div>
     </div>
 </template>

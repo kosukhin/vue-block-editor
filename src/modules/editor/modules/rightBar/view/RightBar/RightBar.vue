@@ -18,6 +18,12 @@ const { translate } = useTranslate()
     <div class="right-bar">
         <div class="right-bar__block">
             <span class="editor__title">
+                {{ translate('attributes') }}
+            </span>
+            attrs
+        </div>
+        <div class="right-bar__block">
+            <span class="editor__title">
                 {{ translate('blocks_tree') }}
             </span>
             <div class="right-bar__tree">

@@ -18,6 +18,7 @@ defineProps({
         <div class="right-bar-tree-item__children">
             <RightBarTreeItem
                 v-for="childNode in node.childNodes"
+                :key="childNode.editorId"
                 :node="childNode"
             />
         </div>

@@ -5,7 +5,7 @@ import type { RequestLoadResponse } from '../model'
  */
 export const useRequestLoad = () => {
     const requestLoad = async (): Promise<RequestLoadResponse> => {
-        const response = await fetch('http://localhost/demoload/email/', {
+        const response = await fetch('http://localhost/demoload/site/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',

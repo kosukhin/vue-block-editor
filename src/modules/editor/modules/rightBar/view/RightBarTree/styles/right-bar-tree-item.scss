@@ -1,4 +1,12 @@
 .right-bar-tree-item {
+    &__title {
+        cursor: pointer;
+
+        &:hover {
+            color: $red_100;
+        }
+    }
+
     &__children {
         padding-left: $step;
     }

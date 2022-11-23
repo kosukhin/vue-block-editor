@@ -15,7 +15,7 @@ const props = defineProps({
 
 const { html } = toRefs(props)
 const { updateFrame } = useUpdateFrame()
-const root = ref<Element | null>(null)
+const root = ref<Element | undefined>()
 
 watch(
     () => html.value,

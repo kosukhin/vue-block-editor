@@ -1,12 +1,11 @@
-import { translations } from '@/modules/i18n/constants'
-import { useTranslateLang } from '@/modules/i18n'
+import { translations } from '@/modules/i18n'
+import { useEditor } from '@/modules/editor'
 
 export const useTranslate = () => {
-    const { lang } = useTranslateLang()
+    const { currentLang } = useEditor()
 
-    const translate = (key: string) => {
-        return translations[lang.value][key] ?? key
-    }
+    const translate = (key: string) =>
+        translations[currentLang.value][key] ?? key
 
     return { translate }
 }

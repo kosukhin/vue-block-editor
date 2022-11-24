@@ -10,6 +10,10 @@ const props = defineProps({
         type: String,
         required: true,
     },
+    lang: {
+        type: String,
+        default: 'ru',
+    },
 })
 
 const { html } = toRefs(props)
@@ -17,7 +21,7 @@ const { updateFrame } = useUpdateFrame()
 const { initEditor } = useEditor()
 const root = ref<Element | undefined>()
 
-initEditor()
+initEditor(props.lang)
 
 watch(
     () => html.value,

@@ -4,9 +4,11 @@ import { storeToRefs } from 'pinia'
 export const useEditor = () => {
     const { onSelectBlock } = useEventSelectBlock()
     const store = useEditorStore()
-    const { currentBlockId } = storeToRefs(store)
+    const { currentBlockId, currentLang } = storeToRefs(store)
 
-    const initEditor = () => {
+    const initEditor = (lang: string) => {
+        store.setCurrentLang(lang)
+
         onSelectBlock((blockId: string) => {
             store.setCurrentBlockId(blockId)
         })
@@ -15,5 +17,6 @@ export const useEditor = () => {
     return {
         currentBlockId,
         initEditor,
+        currentLang,
     }
 }

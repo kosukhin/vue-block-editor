@@ -16,12 +16,12 @@ const props = defineProps({
     },
 })
 
-const { html } = toRefs(props)
+const { html, lang } = toRefs(props)
 const { updateFrame } = useUpdateFrame()
 const { initEditor } = useEditor()
 const root = ref<Element | undefined>()
 
-initEditor(props.lang)
+initEditor(lang.value)
 
 watch(
     () => html.value,

@@ -3,6 +3,7 @@ import { useTranslate } from '@/modules/i18n'
 import RightBarTree from '@/modules/editor/modules/rightBar/view/RightBarTree/RightBarTree.vue'
 import type { PropType } from 'vue'
 import type { Element } from '@/modules/parser'
+import { useEditor } from '@/modules/editor'
 
 defineProps({
     root: {
@@ -12,6 +13,7 @@ defineProps({
 })
 
 const { translate } = useTranslate()
+const { currentBlockId } = useEditor()
 </script>
 
 <template>
@@ -19,7 +21,7 @@ const { translate } = useTranslate()
         <span class="editor__title">
             {{ translate('attributes') }}
         </span>
-        attrs
+        attrs {{ currentBlockId }}
         <span class="editor__title">
             {{ translate('blocks_tree') }}
         </span>

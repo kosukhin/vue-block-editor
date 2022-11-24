@@ -1,16 +1,19 @@
-import { ref } from 'vue'
-import { useEventSelectBlock } from '@/modules/editor'
+import { useEventSelectBlock, useEditorStore } from '@/modules/editor'
+import { storeToRefs } from 'pinia'
 
 export const useEditor = () => {
     const { onSelectBlock } = useEventSelectBlock()
+    const store = useEditorStore()
+    const { currentBlockId } = storeToRefs(store)
 
-    const currentBlock = ref('')
-
-    onSelectBlock((blockId: string) => {
-        currentBlock.value = blockId
-    })
+    const initEditor = () => {
+        onSelectBlock((blockId: string) => {
+            store.setCurrentBlockId(blockId)
+        })
+    }
 
     return {
-        currentBlock,
+        currentBlockId,
+        initEditor,
     }
 }

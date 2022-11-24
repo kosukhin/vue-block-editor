@@ -14,8 +14,10 @@ const props = defineProps({
 
 const { html } = toRefs(props)
 const { updateFrame } = useUpdateFrame()
-const { currentBlock } = useEditor()
+const { initEditor } = useEditor()
 const root = ref<Element | undefined>()
+
+initEditor()
 
 watch(
     () => html.value,
@@ -30,7 +32,6 @@ watch(
     <div class="the-editor">
         <LeftBar class="the-editor__left-bar" />
         <div class="the-editor__content">
-            {{ currentBlock }}
             <iframe :id="frameId" class="the-editor__frame" />
         </div>
         <RightBar v-if="root" :root="root" class="the-editor__right-bar" />

@@ -1,7 +1,6 @@
 import type { Element } from '@/modules/parser'
 import { parse } from 'parse5'
-import { initialElement } from '@/modules/parser'
-import { useCustomizeElement } from '@/modules/parser/application/useCustomizeElement'
+import { initialElement, useCustomizeElement } from '@/modules/parser'
 
 export const useParseHtml = () => {
     const { customizeElement } = useCustomizeElement()

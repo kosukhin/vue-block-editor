@@ -1,9 +1,9 @@
 import type { Element } from '@/modules/parser'
-import { useSerializeElement } from '@/modules/parser'
+import { useSerializeElementForEditor } from '@/modules/parser'
 import { useControlFrameEvents } from '@/modules/renderer'
 
 export const useRenderElement = () => {
-    const { serializeElement } = useSerializeElement()
+    const { serializeElementForEditor } = useSerializeElementForEditor()
     const { controlFrameEvents } = useControlFrameEvents()
 
     const renderElement = async (root: Element, frameId: string) => {
@@ -11,7 +11,7 @@ export const useRenderElement = () => {
         frame.src = 'about:blank'
 
         if (frame.contentDocument) {
-            const html = serializeElement(root)
+            const html = serializeElementForEditor(root)
             frame.contentDocument.open()
             frame.contentDocument.write(html)
             frame.contentDocument.close()

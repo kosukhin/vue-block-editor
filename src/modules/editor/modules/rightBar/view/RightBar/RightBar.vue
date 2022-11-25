@@ -3,7 +3,8 @@ import { useTranslate } from '@/modules/i18n'
 import RightBarTree from '@/modules/editor/modules/rightBar/view/RightBarTree/RightBarTree.vue'
 import type { PropType } from 'vue'
 import type { Element } from '@/modules/parser'
-import { useElementGet } from '@/modules/editor'
+import { systemAttributes, useElementGet } from '@/modules/editor'
+import { computed } from 'vue'
 
 defineProps({
     root: {
@@ -14,6 +15,16 @@ defineProps({
 
 const { translate } = useTranslate()
 const { currentElement } = useElementGet()
+
+const currentElementAttributes = computed(() => {
+    if (!currentElement.value) {
+        return []
+    }
+
+    return currentElement.value.attrs.filter((attribute) => {
+        return !systemAttributes.includes(attribute.name)
+    })
+})
 </script>
 
 <template>
@@ -24,7 +35,7 @@ const { currentElement } = useElementGet()
         <div v-if="currentElement" class="attributes">
             <b>{{ currentElement.nodeName }}</b>
             <div
-                v-for="attribute in currentElement.attrs"
+                v-for="attribute in currentElementAttributes"
                 :key="attribute.name"
             >
                 {{ attribute.name }}: {{ attribute.value }}

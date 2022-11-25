@@ -6,7 +6,7 @@ import { ref } from 'vue'
 export const useElementsHash = createSharedComposable(() => {
     const elementsHash = ref<Dictionary<Element>>({})
 
-    const buildHashByRoot = (root: Element) => {
+    const buildElementsHashByRoot = (root: Element) => {
         elementsHash.value = {}
 
         const traverse = (node: Element) => {
@@ -24,6 +24,6 @@ export const useElementsHash = createSharedComposable(() => {
 
     return {
         elementsHash,
-        buildHashByRoot,
+        buildElementsHashByRoot,
     }
 })

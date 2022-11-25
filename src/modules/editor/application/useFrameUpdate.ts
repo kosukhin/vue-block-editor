@@ -5,11 +5,11 @@ import { frameId, useElementsHash } from '@/modules/editor'
 export const useFrameUpdate = () => {
     const { parseHtml } = useParseHtml()
     const { renderElement } = useRenderElement()
-    const { buildHashByRoot } = useElementsHash()
+    const { buildElementsHashByRoot } = useElementsHash()
 
     const updateFrame = (html: string) => {
         const root = parseHtml(html)
-        buildHashByRoot(root)
+        buildElementsHashByRoot(root)
         renderElement(root, frameId)
 
         return { root }

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, toRefs, watch } from 'vue'
-import { useUpdateFrame, frameId, useEditor } from '@/modules/editor'
+import { useFrameUpdate, frameId, useEditor } from '@/modules/editor'
 import type { Element } from '@/modules/parser'
 import RightBar from '@/modules/editor/modules/rightBar/view/RightBar/RightBar.vue'
 import LeftBar from '@/modules/editor/modules/leftBar/view/LeftBar/LeftBar.vue'
@@ -17,7 +17,7 @@ const props = defineProps({
 })
 
 const { html, lang } = toRefs(props)
-const { updateFrame } = useUpdateFrame()
+const { updateFrame } = useFrameUpdate()
 const { initEditor } = useEditor()
 const root = ref<Element | undefined>()
 

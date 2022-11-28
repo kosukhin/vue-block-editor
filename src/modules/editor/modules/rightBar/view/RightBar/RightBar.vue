@@ -39,7 +39,6 @@ const currentElementAttributes = computed(() => {
                 {{ translate('element') }}
             </span>
             <div class="right-bar__block">
-                <b class="subtitle">{{ currentElement.nodeName }}</b>
                 <RightBarElement />
             </div>
             <template

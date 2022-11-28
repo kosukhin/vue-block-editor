@@ -1,12 +1,18 @@
 <script lang="ts" setup>
 import { useElementGet, useEventSelectBlock } from '@/modules/editor'
+import { useGetNodeName } from '@/modules/node'
 
 const { currentElement } = useElementGet()
 const { emitSelectBlock } = useEventSelectBlock()
+const { getNodeName } = useGetNodeName()
 </script>
 
 <template>
     <div class="right-bar-element">
+        <b class="subtitle">
+            ({{ currentElement.nodeName }})
+            {{ getNodeName(currentElement.nodeName) }}
+        </b>
         <template v-if="currentElement.parentNode">
             <div class="right-bar-element__block">
                 <div class="subtitle">Родитель</div>

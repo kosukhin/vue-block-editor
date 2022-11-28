@@ -1,0 +1,18 @@
+.right-bar-attributes {
+    display: flex;
+    flex-direction: column;
+    gap: calc($step / 2);
+
+    &__item {
+        display: flex;
+        gap: calc($step / 2);
+    }
+
+    &__item-control {
+        flex: 1;
+    }
+
+    &__item-button {
+        width: 30px;
+    }
+}

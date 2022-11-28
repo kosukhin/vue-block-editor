@@ -5,11 +5,7 @@ import type { PropType } from 'vue'
 import type { Element } from '@/modules/parser'
 import { systemAttributes, useElementGet } from '@/modules/editor'
 import { computed } from 'vue'
-import BaseInput from '@/shared/view/ui/BaseInput/BaseInput.vue'
-import TrashIcon from '@/shared/view/icons/TrashIcon.vue'
-import BaseIcon from '@/shared/view/ui/BaseIcon/BaseIcon.vue'
-import BaseButton from '@/shared/view/ui/BaseButton/BaseButton.vue'
-import AddIcon from '@/shared/view/icons/AddIcon.vue'
+import RightBarAttributes from '@/modules/editor/modules/rightBar/view/RightBarAttributes/RightBarAttributes.vue'
 
 defineProps({
     root: {
@@ -30,22 +26,6 @@ const currentElementAttributes = computed(() => {
         return !systemAttributes.includes(attribute.name)
     })
 })
-
-const removeAttribute = () => {
-    console.log('remove')
-}
-
-const changeAttributeName = () => {
-    console.log('change name')
-}
-
-const changeAttributeValue = () => {
-    console.log('change value')
-}
-
-const addAttribute = () => {
-    console.log('add attribute')
-}
 </script>
 
 <template>
@@ -55,35 +35,7 @@ const addAttribute = () => {
         </span>
         <div v-if="currentElement" class="attributes">
             <b>{{ currentElement.nodeName }}</b>
-            <div
-                v-for="attribute in currentElementAttributes"
-                :key="attribute.name"
-                class="attributes__item"
-            >
-                <BaseInput
-                    class="attributes__item-control"
-                    :value="attribute.name"
-                    @input="changeAttributeName"
-                />
-                <BaseInput
-                    class="attributes__item-control"
-                    :value="attribute.value"
-                    @input="changeAttributeValue"
-                />
-                <BaseButton
-                    class="attributes__item-button"
-                    @click="removeAttribute"
-                >
-                    <BaseIcon>
-                        <TrashIcon />
-                    </BaseIcon>
-                </BaseButton>
-            </div>
-            <BaseButton @click="addAttribute">
-                <BaseIcon>
-                    <AddIcon />
-                </BaseIcon>
-            </BaseButton>
+            <RightBarAttributes :attributes="currentElementAttributes" />
         </div>
         <span class="editor__title">
             {{ translate('blocks_tree') }}

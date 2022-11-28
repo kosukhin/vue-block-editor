@@ -1,6 +1,6 @@
 import { useParseHtml } from '@/modules/parser'
 import { useRenderElement } from '@/modules/renderer'
-import { frameId, useElementsHash } from '@/modules/editor'
+import { useElementsHash } from '@/modules/editor'
 
 export const useFrameUpdate = () => {
     const { parseHtml } = useParseHtml()
@@ -10,7 +10,7 @@ export const useFrameUpdate = () => {
     const updateFrame = (html: string) => {
         const root = parseHtml(html)
         buildElementsHashByRoot(root)
-        renderElement(root, frameId)
+        renderElement(root)
 
         return { root }
     }

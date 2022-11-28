@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, toRefs, watch } from 'vue'
-import { useFrameUpdate, frameId, useEditor } from '@/modules/editor'
+import { useFrameUpdate, frameId, useEditor, useFrame } from '@/modules/editor'
 import type { Element } from '@/modules/parser'
 import RightBar from '@/modules/editor/modules/rightBar/view/RightBar/RightBar.vue'
 import LeftBar from '@/modules/editor/modules/leftBar/view/LeftBar/LeftBar.vue'
@@ -17,6 +17,7 @@ const props = defineProps({
 })
 
 const { html, lang } = toRefs(props)
+const { frame } = useFrame()
 const { updateFrame } = useFrameUpdate()
 const { initEditor } = useEditor()
 const root = ref<Element | undefined>()
@@ -36,7 +37,7 @@ watch(
     <div class="the-editor">
         <LeftBar class="the-editor__left-bar" />
         <div class="the-editor__content">
-            <iframe :id="frameId" class="the-editor__frame" />
+            <iframe :id="frameId" ref="frame" class="the-editor__frame" />
         </div>
         <RightBar v-if="root" :root="root" class="the-editor__right-bar" />
     </div>

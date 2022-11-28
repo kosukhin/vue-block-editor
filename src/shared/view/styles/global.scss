@@ -2,11 +2,14 @@ body {
     color: $grey_13;
 }
 
-.editor {
-    &__title {
-        display: block;
-        font-weight: 700;
-        padding-bottom: $step;
-        border-bottom: 1px solid $grey_80;
-    }
+.title {
+    display: block;
+    font-weight: 700;
+}
+
+.subtitle {
+    display: block;
+    font-weight: 700;
+    font-size: 14px;
+    padding-bottom: $step;
 }

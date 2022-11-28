@@ -1,0 +1,11 @@
+.right-bar-element {
+    &__link {
+        display: block;
+        font-size: 14px;
+        color: blue;
+    }
+
+    &__block {
+        margin-bottom: 5px;
+    }
+}

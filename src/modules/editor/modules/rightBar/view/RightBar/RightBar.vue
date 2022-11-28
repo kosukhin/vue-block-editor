@@ -3,9 +3,14 @@ import { useTranslate } from '@/modules/i18n'
 import RightBarTree from '@/modules/editor/modules/rightBar/view/RightBarTree/RightBarTree.vue'
 import type { PropType } from 'vue'
 import type { Element } from '@/modules/parser'
-import { systemAttributes, useElementGet } from '@/modules/editor'
+import {
+    nodeNamesWithoutAttributes,
+    systemAttributes,
+    useElementGet,
+} from '@/modules/editor'
 import { computed } from 'vue'
 import RightBarAttributes from '@/modules/editor/modules/rightBar/view/RightBarAttributes/RightBarAttributes.vue'
+import RightBarElement from '@/modules/editor/modules/rightBar/view/RightBarElement/RightBarElement.vue'
 
 defineProps({
     root: {
@@ -16,7 +21,6 @@ defineProps({
 
 const { translate } = useTranslate()
 const { currentElement } = useElementGet()
-
 const currentElementAttributes = computed(() => {
     if (!currentElement.value) {
         return []
@@ -30,14 +34,31 @@ const currentElementAttributes = computed(() => {
 
 <template>
     <div class="right-bar">
-        <span class="editor__title">
-            {{ translate('attributes') }}
-        </span>
-        <div v-if="currentElement" class="attributes">
-            <b>{{ currentElement.nodeName }}</b>
-            <RightBarAttributes :attributes="currentElementAttributes" />
-        </div>
-        <span class="editor__title">
+        <template v-if="currentElement">
+            <span class="title">
+                {{ translate('element') }}
+            </span>
+            <div class="right-bar__block">
+                <b class="subtitle">{{ currentElement.nodeName }}</b>
+                <RightBarElement />
+            </div>
+            <template
+                v-if="
+                    !nodeNamesWithoutAttributes.includes(
+                        currentElement.nodeName
+                    )
+                "
+            >
+                <span class="title">
+                    {{ translate('attributes') }}
+                </span>
+                <RightBarAttributes
+                    class="right-bar__block"
+                    :attributes="currentElementAttributes"
+                />
+            </template>
+        </template>
+        <span class="title">
             {{ translate('blocks_tree') }}
         </span>
         <div class="right-bar__tree">

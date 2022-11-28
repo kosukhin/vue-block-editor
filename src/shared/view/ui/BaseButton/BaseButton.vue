@@ -1,5 +1,13 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+defineEmits(['click'])
+</script>
 
-<template><button></button></template>
+<template>
+    <button class="base-button" @click="$emit('click', $event)">
+        <slot />
+    </button>
+</template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+@import 'styles/base-button';
+</style>

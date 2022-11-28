@@ -1,0 +1,12 @@
+.base-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--small {
+        :deep(svg) {
+            width: 12px;
+            height: 12px;
+        }
+    }
+}

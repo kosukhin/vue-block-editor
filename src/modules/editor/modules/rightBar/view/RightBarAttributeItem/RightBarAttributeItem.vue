@@ -45,8 +45,6 @@ const changeAttributeValue = (newValue: string) => {
         return
     }
 
-    console.log('change value', newValue)
-
     innerAttribute.value.value = newValue
     updateAttribute(
         currentElement.value,

@@ -32,12 +32,12 @@ const selectBlock = (blockId: string) => {
                 class="right-bar-tree-item__title"
                 @click.stop="$emit('click')"
             >
-                {{ getElementLabel(node) }}
                 <BaseButton @click.stop="removeElement(node)">
                     <BaseIcon>
                         <TrashIcon />
                     </BaseIcon>
                 </BaseButton>
+                {{ getElementLabel(node) }}
             </div>
             <div class="right-bar-tree-item__children">
                 <RightBarTreeItem

@@ -1,10 +1,11 @@
 import type { Element } from '@/modules/parser'
 import { useSerializeElementForEditor } from '@/modules/parser'
-import { useFrame } from '@/modules/editor'
+import { useEventDataChanged, useFrame } from '@/modules/editor'
 import { blockAttrName } from '@/modules/renderer'
 
 export const useRenderChildElement = () => {
     const { serializeElementForEditor } = useSerializeElementForEditor()
+    const { emitDataChanged } = useEventDataChanged()
     const { frame } = useFrame()
 
     const renderChildElement = (child: Element) => {
@@ -20,6 +21,8 @@ export const useRenderChildElement = () => {
         if (elementInDom) {
             elementInDom.innerHTML = serializeElementForEditor(parent)
         }
+
+        emitDataChanged()
     }
 
     return {

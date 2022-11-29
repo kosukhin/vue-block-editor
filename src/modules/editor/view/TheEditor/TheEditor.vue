@@ -1,14 +1,22 @@
 <script lang="ts" setup>
 import { ref, toRefs, watch } from 'vue'
-import { useFrameUpdate, frameId, useEditor, useFrame } from '@/modules/editor'
-import type { Element } from '@/modules/parser'
+import {
+    useFrameUpdate,
+    frameId,
+    useEditor,
+    useFrame,
+    useElementRoot,
+    useEventDataChanged,
+} from '@/modules/editor'
 import RightBar from '@/modules/editor/modules/rightBar/view/RightBar/RightBar.vue'
 import LeftBar from '@/modules/editor/modules/leftBar/view/LeftBar/LeftBar.vue'
+import { useSerializeElement } from '@/modules/parser'
 
+const emit = defineEmits(['update:modelValue'])
 const props = defineProps({
-    html: {
+    modelValue: {
         type: String,
-        required: true,
+        default: '',
     },
     lang: {
         type: String,
@@ -16,17 +24,31 @@ const props = defineProps({
     },
 })
 
-const { html, lang } = toRefs(props)
+const { onDataChanged } = useEventDataChanged()
 const { frame } = useFrame()
+const { root } = useElementRoot()
 const { updateFrame } = useFrameUpdate()
 const { initEditor } = useEditor()
-const root = ref<Element | undefined>()
+const { serializeElement } = useSerializeElement()
+
+const { lang } = toRefs(props)
+const html = ref(props.modelValue)
 
 initEditor(lang.value)
 
+onDataChanged(() => {
+    if (!root.value) {
+        return
+    }
+
+    const innerHTML = serializeElement(root.value)
+    emit('update:modelValue', `<!doctype html><html>${innerHTML}</html>`)
+})
+
 watch(
-    () => html.value,
+    () => props.modelValue,
     (newHtml) => {
+        html.value = newHtml
         const { root: updatedRoot } = updateFrame(newHtml)
         root.value = updatedRoot
     }

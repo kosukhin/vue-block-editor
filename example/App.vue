@@ -1,23 +1,33 @@
 <script setup lang="ts">
 import TheEditor from '@/modules/editor/view/TheEditor/TheEditor.vue'
-import { useRequestLoad } from './application'
-import { RequestLoadResponse } from './model'
-import { ref } from 'vue'
+import { useFileSystemAccess } from '@vueuse/core'
 
-const { requestLoad } = useRequestLoad()
-const content = ref<RequestLoadResponse>({
-    html: '',
-    commonSettings: [],
-})
+const { isSupported, open, data, save } = useFileSystemAccess()
 
-requestLoad().then((loadResponse) => {
-    content.value = loadResponse
-})
+const openFile = async () => {
+    if (!isSupported) {
+        return
+    }
+
+    await open()
+}
+
+const saveFile = () => {
+    if (!isSupported) {
+        return
+    }
+
+    save()
+}
 </script>
 
 <template>
     <div class="app">
-        <TheEditor class="app__editor" lang="ru" :html="content.html" />
+        <div class="app__buttons">
+            <button @click="openFile">Открыть файл</button>
+            <button @click="saveFile">Сохранить</button>
+        </div>
+        <TheEditor v-model="data" class="app__editor" lang="ru" />
     </div>
 </template>
 

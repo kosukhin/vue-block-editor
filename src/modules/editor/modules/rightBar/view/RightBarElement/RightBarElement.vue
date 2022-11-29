@@ -90,12 +90,12 @@ const updateValue = (newValue: string) => {
                     href="#"
                     @click.prevent="emitSelectElement(child.editorId)"
                 >
-                    {{ getElementLabel(child) }}
                     <BaseButton @click.stop="removeElement(child)">
                         <BaseIcon>
                             <TrashIcon />
                         </BaseIcon>
                     </BaseButton>
+                    {{ getElementLabel(child) }}
                 </a>
             </div>
             <div class="right-bar-element__add">

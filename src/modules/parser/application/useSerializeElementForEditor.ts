@@ -1,6 +1,7 @@
 import type { Element } from '@/modules/parser'
 import { useSerializeElement } from '@/modules/parser'
 import { blockAttrName } from '@/modules/renderer'
+import cloneDeep from 'lodash/cloneDeep'
 
 /**
  * Сериализация HTML для вывода внутри редактора
@@ -9,6 +10,8 @@ export const useSerializeElementForEditor = () => {
     const { serializeElement } = useSerializeElement()
 
     const serializeElementForEditor = (root: Element) => {
+        const rootClone = cloneDeep(root)
+
         const traverse = (node: Element) => {
             const idAttribute = {
                 name: blockAttrName,
@@ -28,9 +31,9 @@ export const useSerializeElementForEditor = () => {
             }
         }
 
-        traverse(root)
+        traverse(rootClone)
 
-        return serializeElement(root)
+        return serializeElement(rootClone)
     }
 
     return {

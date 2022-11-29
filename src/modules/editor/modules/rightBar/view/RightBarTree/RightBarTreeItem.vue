@@ -7,6 +7,7 @@ import { useElementRemove } from '@/modules/editor/application/useElementRemove'
 import BaseButton from '@/shared/view/ui/BaseButton/BaseButton.vue'
 import TrashIcon from '@/shared/view/icons/TrashIcon.vue'
 import BaseIcon from '@/shared/view/ui/BaseIcon/BaseIcon.vue'
+import { isElementSignificant } from '@/shared/utils/isElementSignificant'
 
 defineEmits(['click'])
 defineProps({
@@ -26,22 +27,27 @@ const selectBlock = (blockId: string) => {
 
 <template>
     <div class="right-bar-tree-item">
-        <div class="right-bar-tree-item__title" @click.stop="$emit('click')">
-            {{ getElementLabel(node) }}
-            <BaseButton @click.stop="removeElement(node)">
-                <BaseIcon>
-                    <TrashIcon />
-                </BaseIcon>
-            </BaseButton>
-        </div>
-        <div class="right-bar-tree-item__children">
-            <RightBarTreeItem
-                v-for="childNode in node.childNodes"
-                :key="childNode.editorId"
-                :node="childNode"
-                @click="selectBlock(childNode.editorId)"
-            />
-        </div>
+        <template v-if="isElementSignificant(node)">
+            <div
+                class="right-bar-tree-item__title"
+                @click.stop="$emit('click')"
+            >
+                {{ getElementLabel(node) }}
+                <BaseButton @click.stop="removeElement(node)">
+                    <BaseIcon>
+                        <TrashIcon />
+                    </BaseIcon>
+                </BaseButton>
+            </div>
+            <div class="right-bar-tree-item__children">
+                <RightBarTreeItem
+                    v-for="childNode in node.childNodes"
+                    :key="childNode.editorId"
+                    :node="childNode"
+                    @click="selectBlock(childNode.editorId)"
+                />
+            </div>
+        </template>
     </div>
 </template>
 

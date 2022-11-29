@@ -12,6 +12,7 @@ import { useElementUpdate } from '@/modules/editor/application/useElementUpdate'
 import { getElementLabel } from '@/shared/utils/getElementLabel'
 import TrashIcon from '@/shared/view/icons/TrashIcon.vue'
 import { useElementRemove } from '@/modules/editor/application/useElementRemove'
+import { isElementSignificant } from '@/shared/utils/isElementSignificant'
 
 const { currentElement } = useElementGet()
 const { emitSelectElement } = useEventElementSelect()
@@ -23,6 +24,13 @@ const { removeElement } = useElementRemove()
 
 const newChildNodeName = ref('')
 const currentElementValue = computed(() => currentElement.value?.value)
+const significantChildNodes = computed(() =>
+    currentElement.value?.childNodes
+        ? currentElement.value.childNodes.filter((child) =>
+              isElementSignificant(child)
+          )
+        : []
+)
 
 const createChild = () => {
     if (!newChildNodeName.value || !currentElement.value) {
@@ -76,7 +84,7 @@ const updateValue = (newValue: string) => {
             <div class="subtitle">Дочерние</div>
             <div class="right-bar-element__items">
                 <a
-                    v-for="child in currentElement.childNodes"
+                    v-for="child in significantChildNodes"
                     :key="child.editorId"
                     class="right-bar-element__link"
                     href="#"

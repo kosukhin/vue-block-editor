@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { PropType } from 'vue'
 import { Element } from '@/modules/parser'
-import { useEventSelectBlock } from '@/modules/editor'
+import { useEventElementSelect } from '@/modules/editor'
 
 defineEmits(['click'])
 defineProps({
@@ -11,10 +11,10 @@ defineProps({
     },
 })
 
-const { emitSelectBlock } = useEventSelectBlock()
+const { emitSelectElement } = useEventElementSelect()
 
 const selectBlock = (blockId: string) => {
-    emitSelectBlock(blockId)
+    emitSelectElement(blockId)
 }
 </script>
 

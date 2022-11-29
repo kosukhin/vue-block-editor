@@ -1,15 +1,15 @@
-import { useEventSelectBlock, useEditorStore } from '@/modules/editor'
+import { useEventElementSelect, useEditorStore } from '@/modules/editor'
 import { storeToRefs } from 'pinia'
 
 export const useEditor = () => {
-    const { onSelectBlock } = useEventSelectBlock()
+    const { onSelectElement } = useEventElementSelect()
     const store = useEditorStore()
     const { currentBlockId, currentLang } = storeToRefs(store)
 
     const initEditor = (lang: string) => {
         store.setCurrentLang(lang)
 
-        onSelectBlock((blockId: string) => {
+        onSelectElement((blockId: string) => {
             store.setCurrentBlockId(blockId)
         })
     }

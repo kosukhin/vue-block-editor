@@ -12,7 +12,9 @@
         "stylelint": "stylelint '**/*.{vue,scss}' --ignore-pattern 'node_modules/*' --ignore-pattern '.nuxt/*' --ignore-pattern 'dist/*'"
     },
     "dependencies": {
+        "@types/lodash": "^4.14.190",
         "@vueuse/core": "^9.6.0",
+        "lodash": "^4.17.21",
         "parse5": "^7.1.2",
         "pinia": "^2.0.23",
         "uuid": "^9.0.0",

@@ -4,6 +4,7 @@ import { NS } from 'parse5/dist/cjs/common/html'
 export const initialElement: Element = {
     nodeName: 'html',
     tagName: 'html',
+    editorId: '',
     childNodes: [],
     onlyEditor: false,
     parentNode: null,

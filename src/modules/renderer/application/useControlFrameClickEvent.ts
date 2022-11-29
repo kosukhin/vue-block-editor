@@ -1,8 +1,8 @@
-import { useEventSelectBlock } from '@/modules/editor'
+import { useEventElementSelect } from '@/modules/editor'
 import { blockAttrName } from '@/modules/renderer'
 
 export const useControlFrameClickEvent = () => {
-    const { emitSelectBlock } = useEventSelectBlock()
+    const { emitSelectElement } = useEventElementSelect()
 
     const controlFrameClickEvent = (frameDocument: Document) => {
         frameDocument.addEventListener('click', (e) => {
@@ -13,7 +13,7 @@ export const useControlFrameClickEvent = () => {
 
             const targetElement = e.target as HTMLElement
             const selectedBlockId = targetElement.getAttribute(blockAttrName)
-            emitSelectBlock(String(selectedBlockId))
+            emitSelectElement(String(selectedBlockId))
         })
     }
 

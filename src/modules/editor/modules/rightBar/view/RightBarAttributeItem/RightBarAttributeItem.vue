@@ -45,6 +45,8 @@ const changeAttributeValue = (newValue: string) => {
         return
     }
 
+    console.log('change value', newValue)
+
     innerAttribute.value.value = newValue
     updateAttribute(
         currentElement.value,
@@ -57,6 +59,12 @@ const changeAttributeValue = (newValue: string) => {
 </script>
 
 <template>
-    <BaseInput :value="innerAttribute.name" @change="changeAttributeName" />
-    <BaseInput :value="innerAttribute.value" @change="changeAttributeValue" />
+    <BaseInput
+        :model-value="innerAttribute.name"
+        @change="changeAttributeName"
+    />
+    <BaseInput
+        :model-value="innerAttribute.value"
+        @change="changeAttributeValue"
+    />
 </template>

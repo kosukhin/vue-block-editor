@@ -1,18 +1,22 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
 
-const emit = defineEmits(['input', 'change'])
+defineEmits(['update:modelValue', 'change'])
 const props = defineProps({
-    value: {
+    modelValue: {
+        type: String,
+        default: '',
+    },
+    placeholder: {
         type: String,
         default: '',
     },
 })
 
-const innerValue = ref(props.value)
+const innerValue = ref(props.modelValue)
 
 watch(
-    () => props.value,
+    () => props.modelValue,
     (newValue: string) => {
         innerValue.value = newValue
     }
@@ -24,7 +28,7 @@ watch(
         <input
             v-model="innerValue"
             class="base-input__control"
-            @input="$emit('input', innerValue)"
+            @input="$emit('update:modelValue', innerValue)"
             @change="$emit('change', innerValue)"
         />
     </div>

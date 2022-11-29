@@ -8,4 +8,16 @@
     &__block {
         margin-bottom: 5px;
     }
+
+    &__add {
+        display: flex;
+        gap: 5px;
+    }
+
+    &__items {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-bottom: 5px;
+    }
 }

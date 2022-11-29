@@ -7,6 +7,14 @@ export const useElementFactory = () => {
     const elementFactory = (partialElement: Partial<Element>): Element => {
         const baseElement = cloneDeep<Element>(initialElement)
         const editorId = createEditorId()
+        baseElement.tagName = partialElement.nodeName
+
+        if (partialElement.nodeName?.charAt(0) === '#') {
+            delete baseElement.tagName
+            delete baseElement.childNodes
+            baseElement.value = ''
+            baseElement.data = ''
+        }
 
         return {
             ...baseElement,

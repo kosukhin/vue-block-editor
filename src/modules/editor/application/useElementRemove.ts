@@ -6,7 +6,17 @@ export const useElementRemove = () => {
     const { renderChildElement } = useRenderChildElement()
     const { rebuildElementsHashByNode } = useElementsHash()
 
-    const removeElement = (parent: Element, child: Element) => {
+    const removeElement = (child: Element) => {
+        const parent = child.parentNode
+
+        if (!confirm('Вы уверены?')) {
+            return
+        }
+
+        if (!parent) {
+            return
+        }
+
         const toRemoveIndex = parent.childNodes.findIndex((element) => {
             return element.editorId === child.editorId
         })

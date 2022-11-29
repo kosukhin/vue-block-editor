@@ -19,6 +19,6 @@
 
     &__tree {
         flex: 1;
-        overflow-y: scroll;
+        overflow: auto;
     }
 }

@@ -2,6 +2,11 @@
 import { PropType } from 'vue'
 import { Element } from '@/modules/parser'
 import { useEventElementSelect } from '@/modules/editor'
+import { getElementLabel } from '@/shared/utils/getElementLabel'
+import { useElementRemove } from '@/modules/editor/application/useElementRemove'
+import BaseButton from '@/shared/view/ui/BaseButton/BaseButton.vue'
+import TrashIcon from '@/shared/view/icons/TrashIcon.vue'
+import BaseIcon from '@/shared/view/ui/BaseIcon/BaseIcon.vue'
 
 defineEmits(['click'])
 defineProps({
@@ -12,6 +17,7 @@ defineProps({
 })
 
 const { emitSelectElement } = useEventElementSelect()
+const { removeElement } = useElementRemove()
 
 const selectBlock = (blockId: string) => {
     emitSelectElement(blockId)
@@ -21,7 +27,12 @@ const selectBlock = (blockId: string) => {
 <template>
     <div class="right-bar-tree-item">
         <div class="right-bar-tree-item__title" @click.stop="$emit('click')">
-            {{ node.nodeName }}
+            {{ getElementLabel(node) }}
+            <BaseButton @click.stop="removeElement(node)">
+                <BaseIcon>
+                    <TrashIcon />
+                </BaseIcon>
+            </BaseButton>
         </div>
         <div class="right-bar-tree-item__children">
             <RightBarTreeItem

@@ -9,6 +9,9 @@ import { computed, ref } from 'vue'
 import { useElementFactory } from '@/modules/editor'
 import { useElementAdd } from '@/modules/editor/application/useElementAdd'
 import { useElementUpdate } from '@/modules/editor/application/useElementUpdate'
+import { getElementLabel } from '@/shared/utils/getElementLabel'
+import TrashIcon from '@/shared/view/icons/TrashIcon.vue'
+import { useElementRemove } from '@/modules/editor/application/useElementRemove'
 
 const { currentElement } = useElementGet()
 const { emitSelectElement } = useEventElementSelect()
@@ -16,6 +19,7 @@ const { getNodeName } = useGetNodeName()
 const { elementFactory } = useElementFactory()
 const { addElement } = useElementAdd()
 const { updateElement } = useElementUpdate()
+const { removeElement } = useElementRemove()
 
 const newChildNodeName = ref('')
 const currentElementValue = computed(() => currentElement.value?.value)
@@ -65,7 +69,7 @@ const updateValue = (newValue: string) => {
                     emitSelectElement(currentElement.parentNode.editorId)
                 "
             >
-                {{ currentElement.parentNode.nodeName }}
+                {{ getElementLabel(currentElement.parentNode) }}
             </a>
         </div>
         <template v-if="currentElement.childNodes">
@@ -78,7 +82,12 @@ const updateValue = (newValue: string) => {
                     href="#"
                     @click.prevent="emitSelectElement(child.editorId)"
                 >
-                    {{ child.nodeName }}
+                    {{ getElementLabel(child) }}
+                    <BaseButton @click.stop="removeElement(child)">
+                        <BaseIcon>
+                            <TrashIcon />
+                        </BaseIcon>
+                    </BaseButton>
                 </a>
             </div>
             <div class="right-bar-element__add">

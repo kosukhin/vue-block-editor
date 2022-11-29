@@ -9,8 +9,8 @@ export const useElementAdd = () => {
     const addElement = (parent: Element, child: Element) => {
         child.parentNode = parent
         parent.childNodes.push(child)
-        renderChildElement(parent)
         rebuildElementsHashByNode(parent)
+        renderChildElement(parent)
     }
 
     return { addElement }

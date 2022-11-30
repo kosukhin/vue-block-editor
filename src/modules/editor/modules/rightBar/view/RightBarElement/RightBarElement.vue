@@ -13,6 +13,7 @@ import { getElementLabel } from '@/shared/utils/getElementLabel'
 import TrashIcon from '@/shared/view/icons/TrashIcon.vue'
 import { useElementRemove } from '@/modules/editor/application/useElementRemove'
 import { isElementSignificant } from '@/shared/utils/isElementSignificant'
+import BaseTextarea from '@/shared/view/ui/BaseTextarea/BaseTextarea.vue'
 
 const { currentElement } = useElementGet()
 const { emitSelectElement } = useEventElementSelect()
@@ -63,7 +64,8 @@ const updateValue = (newValue: string) => {
             class="right-bar-element__block"
         >
             <div class="subtitle">Содержимое</div>
-            <BaseInput
+            <BaseTextarea
+                :key="`rightbar_content_${currentElementValue}`"
                 :model-value="currentElementValue"
                 @change="updateValue"
             />

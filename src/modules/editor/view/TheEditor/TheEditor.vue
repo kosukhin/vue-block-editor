@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, toRefs, watch } from 'vue'
+import { watch } from 'vue'
 import {
     useFrameUpdate,
     frameId,
@@ -18,6 +18,10 @@ const props = defineProps({
         type: String,
         default: '',
     },
+    newHtml: {
+        type: String,
+        default: '',
+    },
     lang: {
         type: String,
         default: 'ru',
@@ -31,10 +35,7 @@ const { updateFrame } = useFrameUpdate()
 const { initEditor } = useEditor()
 const { serializeElement } = useSerializeElement()
 
-const { lang } = toRefs(props)
-const html = ref(props.modelValue)
-
-initEditor(lang.value)
+initEditor(props.lang)
 
 onDataChanged(() => {
     if (!root.value) {
@@ -46,9 +47,8 @@ onDataChanged(() => {
 })
 
 watch(
-    () => props.modelValue,
+    () => props.newHtml,
     (newHtml) => {
-        html.value = newHtml
         const { root: updatedRoot } = updateFrame(newHtml)
         root.value = updatedRoot
     }

@@ -20,7 +20,7 @@ export const useElementBoundingRect = createSharedComposable(() => {
     })
     const boundingRectStyles: Dictionary<string> = {
         display: 'block',
-        position: 'fixed',
+        position: 'absolute',
         width: '1px',
         height: '1px',
         top: '-10px',
@@ -37,16 +37,18 @@ export const useElementBoundingRect = createSharedComposable(() => {
     }
 
     const updateBoundingRectByElement = (element: HTMLElement) => {
-        if (!boundingRect.value) {
+        if (!boundingRect.value || !frame.value?.contentDocument) {
             return
         }
 
         const { x, y, width, height } = element.getBoundingClientRect()
+        const documentX = frame.value.contentDocument.body.scrollLeft
+        const documentY = frame.value.contentDocument.body.scrollTop
 
         boundingRect.value.style.width = String(width)
         boundingRect.value.style.height = String(height)
-        boundingRect.value.style.top = String(y)
-        boundingRect.value.style.left = String(x)
+        boundingRect.value.style.top = String(y + documentY)
+        boundingRect.value.style.left = String(x + documentX)
     }
 
     watch(currentBlockId, (newBlockId) => {

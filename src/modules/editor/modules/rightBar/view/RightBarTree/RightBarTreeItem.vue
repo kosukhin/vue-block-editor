@@ -37,7 +37,9 @@ const selectBlock = (blockId: string) => {
                         <TrashIcon />
                     </BaseIcon>
                 </BaseButton>
-                {{ getElementLabel(node) }}
+                <span class="right-bar-tree-item__title-text">
+                    {{ getElementLabel(node) }}
+                </span>
             </div>
             <div class="right-bar-tree-item__children">
                 <RightBarTreeItem

@@ -1,11 +1,12 @@
 import { useEventElementSelect } from '@/modules/editor'
 import { blockAttrName } from '@/modules/renderer'
+import { useEventListener } from '@vueuse/core'
 
 export const useControlFrameClickEvent = () => {
     const { emitSelectElement } = useEventElementSelect()
 
     const controlFrameClickEvent = (frameDocument: Document) => {
-        frameDocument.addEventListener('click', (e) => {
+        useEventListener(frameDocument, 'click', (e) => {
             e.preventDefault()
             if (!e.target || !('getAttribute' in e.target)) {
                 return

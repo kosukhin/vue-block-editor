@@ -99,7 +99,11 @@ const updateValue = (newValue: string) => {
                 </a>
             </div>
             <div class="right-bar-element__add">
-                <BaseInput v-model="newChildNodeName" placeholder="Тэг" />
+                <BaseInput
+                    v-model="newChildNodeName"
+                    class="right-bar-element__add-input"
+                    placeholder="Тэг"
+                />
                 <BaseButton title="Добавить тэг" @click="createChild">
                     <BaseIcon>
                         <AddIcon />

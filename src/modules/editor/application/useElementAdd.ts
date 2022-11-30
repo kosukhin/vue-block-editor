@@ -7,6 +7,10 @@ export const useElementAdd = () => {
     const { rebuildElementsHashByNode } = useElementsHash()
 
     const addElement = (parent: Element, child: Element) => {
+        if (!parent.childNodes) {
+            return
+        }
+
         child.parentNode = parent
         parent.childNodes.push(child)
         rebuildElementsHashByNode(parent)

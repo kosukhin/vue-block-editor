@@ -12,6 +12,11 @@
     "compilerOptions": {
         "composite": true,
         "baseUrl": ".",
+        "lib": [
+            "ESNext",
+            "ESNext.AsyncIterable",
+            "DOM"
+        ],
         "paths": {
             "@/*": [
                 "./src/*"

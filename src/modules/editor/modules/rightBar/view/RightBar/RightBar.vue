@@ -40,7 +40,7 @@ const currentElementAttributes = computed(() => {
 })
 
 onMounted(() => {
-    const { y } = useScroll(rightBarTree.value, { behavior: 'smooth' })
+    const { y, x } = useScroll(rightBarTree.value)
 
     watch(currentBlockId, (editorId: string) => {
         const element = findBySelector(`[${blockAttrTreeName}="${editorId}"]`)
@@ -51,6 +51,7 @@ onMounted(() => {
 
         y.value =
             element.offsetTop - rightBarTree.value.offsetTop - scrollTreePadding
+        setTimeout(() => (x.value = element.offsetLeft - scrollTreePadding))
     })
 })
 </script>

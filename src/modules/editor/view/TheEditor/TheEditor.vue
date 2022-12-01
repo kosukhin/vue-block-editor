@@ -9,7 +9,6 @@ import {
     useEventDataChanged,
 } from '@/modules/editor'
 import RightBar from '@/modules/editor/modules/rightBar/view/RightBar/RightBar.vue'
-import LeftBar from '@/modules/editor/modules/leftBar/view/LeftBar/LeftBar.vue'
 import { useSerializeElement } from '@/modules/parser'
 
 const emit = defineEmits(['update:modelValue'])
@@ -57,7 +56,6 @@ watch(
 
 <template>
     <div class="the-editor">
-        <LeftBar class="the-editor__left-bar" />
         <div class="the-editor__content">
             <iframe :id="frameId" ref="frame" class="the-editor__frame" />
         </div>

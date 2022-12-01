@@ -22,7 +22,7 @@ defineProps({
 const { translate } = useTranslate()
 const { currentElement } = useElementGet()
 const currentElementAttributes = computed(() => {
-    if (!currentElement.value) {
+    if (!currentElement.value || !currentElement.value.attrs) {
         return []
     }
 

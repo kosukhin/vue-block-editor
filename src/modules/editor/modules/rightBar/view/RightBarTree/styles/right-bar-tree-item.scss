@@ -15,7 +15,11 @@
         overflow: hidden;
         text-overflow: ellipsis;
         display: block;
-        flex: 1 0 200px
+        flex: 1 0 200px;
+
+        &--selected {
+            color: red
+        }
     }
 
     &__children {

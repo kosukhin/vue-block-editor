@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { PropType } from 'vue'
+import { computed, PropType } from 'vue'
 import { Element } from '@/modules/parser'
-import { useEventElementSelect } from '@/modules/editor'
+import { useEditor, useEventElementSelect } from '@/modules/editor'
 import { getElementLabel } from '@/shared/utils/getElementLabel'
 import { useElementRemove } from '@/modules/editor/application/useElementRemove'
 import BaseButton from '@/shared/view/ui/BaseButton/BaseButton.vue'
@@ -10,7 +10,7 @@ import BaseIcon from '@/shared/view/ui/BaseIcon/BaseIcon.vue'
 import { isElementSignificant } from '@/shared/utils/isElementSignificant'
 
 defineEmits(['click'])
-defineProps({
+const props = defineProps({
     node: {
         type: Object as PropType<Element>,
         required: true,
@@ -18,7 +18,10 @@ defineProps({
 })
 
 const { emitSelectElement } = useEventElementSelect()
+const { currentBlockId } = useEditor()
 const { removeElement } = useElementRemove()
+
+const isSelected = computed(() => currentBlockId.value === props.node.editorId)
 
 const selectBlock = (blockId: string) => {
     emitSelectElement(blockId)
@@ -37,7 +40,12 @@ const selectBlock = (blockId: string) => {
                         <TrashIcon />
                     </BaseIcon>
                 </BaseButton>
-                <span class="right-bar-tree-item__title-text">
+                <span
+                    :class="{
+                        'right-bar-tree-item__title-text--selected': isSelected,
+                    }"
+                    class="right-bar-tree-item__title-text"
+                >
                     {{ getElementLabel(node) }}
                 </span>
             </div>

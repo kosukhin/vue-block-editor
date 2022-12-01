@@ -1,18 +1,21 @@
 <script lang="ts" setup>
-import { useElementGet, useEventElementSelect } from '@/modules/editor'
+import {
+    useElementGet,
+    useEventElementSelect,
+    useMoveChildElement,
+    useElementFactory,
+    useElementAdd,
+    useElementUpdate,
+    useElementRemove,
+} from '@/modules/editor'
 import { useGetNodeName } from '@/modules/node'
+import { getElementLabel, isElementSignificant } from '@/shared'
+import { computed, ref } from 'vue'
 import BaseInput from '@/shared/view/ui/BaseInput/BaseInput.vue'
 import BaseButton from '@/shared/view/ui/BaseButton/BaseButton.vue'
 import BaseIcon from '@/shared/view/ui/BaseIcon/BaseIcon.vue'
 import AddIcon from '@/shared/view/icons/AddIcon.vue'
-import { computed, ref } from 'vue'
-import { useElementFactory } from '@/modules/editor'
-import { useElementAdd } from '@/modules/editor/application/useElementAdd'
-import { useElementUpdate } from '@/modules/editor/application/useElementUpdate'
-import { getElementLabel } from '@/shared/utils/getElementLabel'
 import TrashIcon from '@/shared/view/icons/TrashIcon.vue'
-import { useElementRemove } from '@/modules/editor/application/useElementRemove'
-import { isElementSignificant } from '@/shared/utils/isElementSignificant'
 import BaseTextarea from '@/shared/view/ui/BaseTextarea/BaseTextarea.vue'
 
 const { currentElement } = useElementGet()
@@ -22,14 +25,13 @@ const { elementFactory } = useElementFactory()
 const { addElement } = useElementAdd()
 const { updateElement } = useElementUpdate()
 const { removeElement } = useElementRemove()
+const { moveUpChildElement, moveDownChildElement } = useMoveChildElement()
 
 const newChildNodeName = ref('')
 const currentElementValue = computed(() => currentElement.value?.value)
 const significantChildNodes = computed(() =>
     currentElement.value?.childNodes
-        ? currentElement.value.childNodes.filter((child) =>
-              isElementSignificant(child)
-          )
+        ? currentElement.value.childNodes.filter(isElementSignificant)
         : []
 )
 
@@ -96,6 +98,12 @@ const updateValue = (newValue: string) => {
                         <BaseIcon>
                             <TrashIcon />
                         </BaseIcon>
+                    </BaseButton>
+                    <BaseButton @click.stop="moveDownChildElement(child)">
+                        &darr;
+                    </BaseButton>
+                    <BaseButton @click.stop="moveUpChildElement(child)">
+                        &uarr;
                     </BaseButton>
                     {{ getElementLabel(child) }}
                 </a>

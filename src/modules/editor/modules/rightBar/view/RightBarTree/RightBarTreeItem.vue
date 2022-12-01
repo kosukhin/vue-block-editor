@@ -8,6 +8,7 @@ import BaseButton from '@/shared/view/ui/BaseButton/BaseButton.vue'
 import TrashIcon from '@/shared/view/icons/TrashIcon.vue'
 import BaseIcon from '@/shared/view/ui/BaseIcon/BaseIcon.vue'
 import { isElementSignificant } from '@/shared/utils/isElementSignificant'
+import { blockAttrTreeName } from '@/modules/renderer'
 
 defineEmits(['click'])
 const props = defineProps({
@@ -22,7 +23,7 @@ const { currentBlockId } = useEditor()
 const { removeElement } = useElementRemove()
 
 const isSelected = computed(() => currentBlockId.value === props.node.editorId)
-
+blockAttrTreeName
 const selectBlock = (blockId: string) => {
     emitSelectElement(blockId)
 }
@@ -41,6 +42,7 @@ const selectBlock = (blockId: string) => {
                     </BaseIcon>
                 </BaseButton>
                 <span
+                    v-bind="{ [blockAttrTreeName]: node.editorId }"
                     :class="{
                         'right-bar-tree-item__title-text--selected': isSelected,
                     }"

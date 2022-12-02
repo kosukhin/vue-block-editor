@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Ref, ref, watch } from 'vue'
+import { watch } from 'vue'
 import { useTextareaAutosize } from '@vueuse/core'
 
 defineEmits(['update:modelValue', 'change'])

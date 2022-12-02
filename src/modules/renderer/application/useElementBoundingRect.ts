@@ -21,6 +21,7 @@ export const useElementBoundingRect = createSharedComposable(() => {
         return null
     })
     const boundingRectStyles: Dictionary<string> = {
+        background: 'rgba(255, 255, 255, .2)',
         display: 'block',
         position: 'absolute',
         width: '1px',

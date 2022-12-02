@@ -1,9 +1,19 @@
 .tabs {
+    display: flex;
+    flex-direction: column;
+
     &__header {
         font-size: 14px;
         display: flex;
         gap: 5px;
         flex-wrap: nowrap;
         overflow-x: auto;
+        border-bottom: 2px solid $grey_80;
+        flex-shrink: 0;
+    }
+
+    &__content {
+        flex: 1;
+        overflow: auto;
     }
 }

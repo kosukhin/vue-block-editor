@@ -87,26 +87,30 @@ const updateValue = (newValue: string) => {
         <template v-if="currentElement.childNodes">
             <div class="subtitle">Дочерние</div>
             <div class="right-bar-element__items">
-                <a
+                <div
                     v-for="child in significantChildNodes"
                     :key="child.editorId"
-                    class="right-bar-element__link"
-                    href="#"
-                    @click.prevent="emitSelectElement(child.editorId)"
+                    class="right-bar-element__item"
                 >
                     <BaseButton @click.stop="removeElement(child)">
                         <BaseIcon>
                             <TrashIcon />
                         </BaseIcon>
                     </BaseButton>
-                    <BaseButton @click.stop="moveDownChildElement(child)">
-                        &darr;
-                    </BaseButton>
                     <BaseButton @click.stop="moveUpChildElement(child)">
                         &uarr;
                     </BaseButton>
-                    {{ getElementLabel(child) }}
-                </a>
+                    <BaseButton @click.stop="moveDownChildElement(child)">
+                        &darr;
+                    </BaseButton>
+                    <a
+                        class="right-bar-element__link"
+                        href="#"
+                        @click.prevent="emitSelectElement(child.editorId)"
+                    >
+                        {{ getElementLabel(child) }}
+                    </a>
+                </div>
             </div>
             <div class="right-bar-element__add">
                 <BaseInput

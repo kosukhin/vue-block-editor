@@ -21,4 +21,9 @@
         flex: 1;
         overflow: auto;
     }
+
+    &__tabs {
+        max-height: 50%;
+        overflow: hidden;
+    }
 }

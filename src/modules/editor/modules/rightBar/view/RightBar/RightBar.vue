@@ -13,6 +13,7 @@ import TabHeaderItem from '@/shared/view/ui/Tabs/TabHeaderItem.vue'
 import TabContent from '@/shared/view/ui/Tabs/TabContent.vue'
 import RightBarBlocks from '@/modules/editor/modules/rightBar/view/RightBarBlocks/RightBarBlocks.vue'
 import RightBarEditor from '@/modules/editor/modules/rightBar/view/RightBarEditor/RightBarEditor.vue'
+import Modal from '@/shared/view/ui/Modal/Modal.vue'
 
 defineProps({
     root: {
@@ -66,6 +67,7 @@ onMounted(() => {
         <div ref="rightBarTree" class="right-bar__tree">
             <RightBarTree :root="root" />
         </div>
+        <Modal />
     </div>
 </template>
 

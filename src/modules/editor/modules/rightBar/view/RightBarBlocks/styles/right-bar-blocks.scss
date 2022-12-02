@@ -1,0 +1,20 @@
+.right-bar-blocks {
+    &__items {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 5px;
+    }
+
+    &__item {
+        border: 1px solid $grey_80;
+        padding: calc($step / 2)
+    }
+
+    &__item-title {
+        margin-bottom: 5px;
+    }
+
+    &__actions {
+        font-size: 12px;
+    }
+}

@@ -36,7 +36,7 @@ const selectBlock = (blockId: string) => {
                 class="right-bar-tree-item__title"
                 @click.stop="$emit('click')"
             >
-                <BaseButton @click.stop="removeElement(node)">
+                <BaseButton title="Удалить" @click.stop="removeElement(node)">
                     <BaseIcon>
                         <TrashIcon />
                     </BaseIcon>

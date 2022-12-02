@@ -28,6 +28,7 @@ watch(
         <input
             v-model="innerValue"
             class="base-input__control"
+            :placeholder="placeholder"
             @input="$emit('update:modelValue', innerValue)"
             @change="$emit('change', innerValue)"
         />

@@ -6,11 +6,15 @@ import {
     useElementGet,
 } from '@/modules/editor'
 import { useTranslate } from '@/modules/i18n'
+import { useModal } from '@/shared'
 import RightBarAttributes from '@/modules/editor/modules/rightBar/view/RightBarAttributes/RightBarAttributes.vue'
 import RightBarElement from '@/modules/editor/modules/rightBar/view/RightBarElement/RightBarElement.vue'
+import BaseButton from '@/shared/view/ui/BaseButton/BaseButton.vue'
+import CreateBlockModal from '@/modules/blocks/view/CreateBlockModal/CreateBlockModal.vue'
 
 const { translate } = useTranslate()
 const { currentElement } = useElementGet()
+const { openModal } = useModal()
 
 const currentElementAttributes = computed(() => {
     if (!currentElement.value || !currentElement.value.attrs) {
@@ -21,6 +25,13 @@ const currentElementAttributes = computed(() => {
         return !systemAttributes.includes(attribute.name)
     })
 })
+
+const openBlockModal = () => {
+    openModal({
+        title: 'Создать блок',
+        component: () => CreateBlockModal,
+    })
+}
 </script>
 
 <template>
@@ -47,6 +58,9 @@ const currentElementAttributes = computed(() => {
                     :attributes="currentElementAttributes"
                 />
             </template>
+            <BaseButton @click="openBlockModal">
+                Сохранить как блок
+            </BaseButton>
         </template>
         <template v-else> Выберите элемент </template>
     </div>

@@ -116,7 +116,7 @@ const updateValue = (newValue: string) => {
                 <BaseInput
                     v-model="newChildNodeName"
                     class="right-bar-element__add-input"
-                    placeholder="Тэг"
+                    placeholder="Новый тэг"
                 />
                 <BaseButton title="Добавить тэг" @click="createChild">
                     <BaseIcon>

@@ -6,7 +6,6 @@ import {
     useElementFactory,
     useElementAdd,
     useElementUpdate,
-    useElementRemove,
 } from '@/modules/editor'
 import { useGetNodeName } from '@/modules/node'
 import { getElementLabel, isElementSignificant } from '@/shared'
@@ -16,7 +15,6 @@ import BaseInput from '@/shared/view/ui/BaseInput/BaseInput.vue'
 import BaseButton from '@/shared/view/ui/BaseButton/BaseButton.vue'
 import BaseIcon from '@/shared/view/ui/BaseIcon/BaseIcon.vue'
 import AddIcon from '@/shared/view/icons/AddIcon.vue'
-import TrashIcon from '@/shared/view/icons/TrashIcon.vue'
 import BaseTextarea from '@/shared/view/ui/BaseTextarea/BaseTextarea.vue'
 
 const { currentElement } = useElementGet()
@@ -25,7 +23,6 @@ const { getNodeName } = useGetNodeName()
 const { elementFactory } = useElementFactory()
 const { addElement } = useElementAdd()
 const { updateElement } = useElementUpdate()
-const { removeElement } = useElementRemove()
 const { moveUpChildElement, moveDownChildElement } = useMoveChildElement()
 const { translate } = useTranslate()
 
@@ -100,11 +97,6 @@ const emitSelectParent = () => {
                     :key="child.editorId"
                     class="right-bar-element__item"
                 >
-                    <BaseButton @click.stop="removeElement(child)">
-                        <BaseIcon>
-                            <TrashIcon />
-                        </BaseIcon>
-                    </BaseButton>
                     <BaseButton @click.stop="moveUpChildElement(child)">
                         &uarr;
                     </BaseButton>

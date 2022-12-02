@@ -10,8 +10,7 @@
 
 Можно посмотреть на работу редактора по этой ссылке:
 
-<a href="example.com" target="_blank">New Tab</a>
-[Попробовать редактор](https://htmleditor.kosuha606.ru/){:target="_blank"}
+<a href="https://htmleditor.kosuha606.ru/" target="_blank">Попробовать редактор</a>
 
 ## Демонстрация работы
 

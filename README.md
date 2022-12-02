@@ -8,5 +8,4 @@
 
 ## Демонстрация работы
 
-https://user-images.githubusercontent.com/109918884/204788734-3bd1b21e-3e81-466b-a40c-402200a42d5d.mp4
-
+https://user-images.githubusercontent.com/109918884/205291910-a8d4e8de-68ee-4e63-998f-a5f020731f92.mp4

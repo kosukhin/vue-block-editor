@@ -3,17 +3,19 @@ import { serializeStylesHash } from '@/shared/utils/serializeStylesHash'
 import { createEditorId } from '@/shared'
 import { createSharedComposable } from '@vueuse/core'
 import { useEditor, useFrame } from '@/modules/editor'
-import { computed, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { blockAttrName } from '@/modules/renderer'
 
 export const useElementBoundingRect = createSharedComposable(() => {
     const { frame } = useFrame()
     const { currentBlockId } = useEditor()
 
-    const boundingRectId = createEditorId()
+    const boundingRectId = ref(createEditorId())
     const boundingRect = computed(() => {
         if (frame.value?.contentDocument) {
-            return frame.value.contentDocument.getElementById(boundingRectId)
+            return frame.value.contentDocument.getElementById(
+                boundingRectId.value
+            )
         }
 
         return null
@@ -30,9 +32,14 @@ export const useElementBoundingRect = createSharedComposable(() => {
         'pointer-events': 'none',
     }
 
+    const updateBoundingRectId = () => {
+        boundingRectId.value = createEditorId()
+    }
+
     const initBoundingRect = (html: string) => {
+        updateBoundingRectId()
         const styles = serializeStylesHash(boundingRectStyles)
-        html += `<div id="${boundingRectId}"></div><style>[id="${boundingRectId}"] { ${styles} }</style>`
+        html += `<div id="${boundingRectId.value}"></div><style>[id="${boundingRectId.value}"] { ${styles} }</style>`
         return html
     }
 
@@ -63,5 +70,9 @@ export const useElementBoundingRect = createSharedComposable(() => {
         }
     })
 
-    return { initBoundingRect, updateBoundingRectByElement }
+    return {
+        initBoundingRect,
+        updateBoundingRectByElement,
+        updateBoundingRectId,
+    }
 })

@@ -8,7 +8,7 @@ export const initialElement: Element = {
     editorId: '',
     childNodes: [],
     onlyEditor: false,
-    parentNode: null,
+    parentNode: undefined,
     namespaceURI: NS.HTML,
     attrs: [],
 }

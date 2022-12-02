@@ -55,10 +55,18 @@ const updateValue = (newValue: string) => {
     currentElement.value.value = newValue
     updateElement(currentElement.value)
 }
+
+const emitSelectParent = () => {
+    if (!currentElement.value?.parentNode) {
+        return
+    }
+
+    emitSelectElement(currentElement.value.parentNode.editorId)
+}
 </script>
 
 <template>
-    <div class="right-bar-element">
+    <div v-if="currentElement" class="right-bar-element">
         <b class="subtitle">
             ({{ currentElement.nodeName }})
             {{ getNodeName(currentElement.nodeName) }}
@@ -79,9 +87,7 @@ const updateValue = (newValue: string) => {
             <a
                 class="right-bar-element__link"
                 href="#"
-                @click.prevent="
-                    emitSelectElement(currentElement.parentNode.editorId)
-                "
+                @click.prevent="emitSelectParent"
             >
                 {{ getElementLabel(currentElement.parentNode) }}
             </a>

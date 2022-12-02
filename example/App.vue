@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import TheEditor from '@/modules/editor/view/TheEditor/TheEditor.vue'
 import { useFileSystemAccess } from '@vueuse/core'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 const { isSupported, open, data, save } = useFileSystemAccess({})
 
 const newHtml = ref()
+const innerData = computed<string>({
+    get: () => String(data.value),
+    set: (newValue: string) => (data.value = newValue),
+})
 
 const openFile = async () => {
     if (!isSupported) {
@@ -32,7 +36,7 @@ const saveFile = () => {
             <button @click="saveFile">Сохранить</button>
         </div>
         <TheEditor
-            v-model="data"
+            v-model="innerData"
             :new-html="newHtml"
             class="app__editor"
             lang="ru"

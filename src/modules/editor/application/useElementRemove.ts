@@ -13,7 +13,7 @@ export const useElementRemove = () => {
             return
         }
 
-        if (!parent) {
+        if (!parent || !parent.childNodes) {
             return
         }
 

@@ -1,0 +1,9 @@
+.tabs {
+    &__header {
+        font-size: 14px;
+        display: flex;
+        gap: 5px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+}

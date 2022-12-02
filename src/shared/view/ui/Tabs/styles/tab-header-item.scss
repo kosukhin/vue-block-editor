@@ -1,0 +1,8 @@
+.tab-header-item {
+    padding: $step;
+    cursor: pointer;
+
+    &--active {
+        background: #ccc;
+    }
+}

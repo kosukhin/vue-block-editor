@@ -12,10 +12,13 @@ import {
 import { computed, onMounted, ref, watch } from 'vue'
 import { useScroll } from '@vueuse/core'
 import { findBySelector } from '@/shared'
+import { blockAttrTreeName } from '@/modules/renderer'
 import RightBarTree from '@/modules/editor/modules/rightBar/view/RightBarTree/RightBarTree.vue'
 import RightBarAttributes from '@/modules/editor/modules/rightBar/view/RightBarAttributes/RightBarAttributes.vue'
 import RightBarElement from '@/modules/editor/modules/rightBar/view/RightBarElement/RightBarElement.vue'
-import { blockAttrTreeName } from '@/modules/renderer'
+import Tabs from '@/shared/view/ui/Tabs/Tabs.vue'
+import TabHeaderItem from '@/shared/view/ui/Tabs/TabHeaderItem.vue'
+import TabContent from '@/shared/view/ui/Tabs/TabContent.vue'
 
 defineProps({
     root: {
@@ -28,6 +31,7 @@ const { translate } = useTranslate()
 const { currentElement } = useElementGet()
 const { currentBlockId } = useEditor()
 
+const currentTab = ref('editor')
 const rightBarTree = ref()
 const currentElementAttributes = computed(() => {
     if (!currentElement.value || !currentElement.value.attrs) {
@@ -58,6 +62,16 @@ onMounted(() => {
 
 <template>
     <div class="right-bar">
+        <Tabs v-model="currentTab">
+            <template #header>
+                <TabHeaderItem tab="editor">Редактор</TabHeaderItem>
+                <TabHeaderItem tab="blocks">Блоки</TabHeaderItem>
+            </template>
+            <template #content>
+                <TabContent tab="editor">Редактор</TabContent>
+                <TabContent tab="blocks">Блоки</TabContent>
+            </template>
+        </Tabs>
         <template v-if="currentElement">
             <span class="title">
                 {{ translate('element') }}

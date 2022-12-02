@@ -10,7 +10,7 @@ import { useModal } from '@/shared'
 import RightBarAttributes from '@/modules/editor/modules/rightBar/view/RightBarAttributes/RightBarAttributes.vue'
 import RightBarElement from '@/modules/editor/modules/rightBar/view/RightBarElement/RightBarElement.vue'
 import BaseButton from '@/shared/view/ui/BaseButton/BaseButton.vue'
-import CreateBlockModal from '@/modules/blocks/view/CreateBlockModal/CreateBlockModal.vue'
+import BlockModal from '@/modules/blocks/view/BlockModal/BlockModal.vue'
 
 const { translate } = useTranslate()
 const { currentElement } = useElementGet()
@@ -29,7 +29,10 @@ const currentElementAttributes = computed(() => {
 const openBlockModal = () => {
     openModal({
         title: 'Создать блок',
-        component: () => CreateBlockModal,
+        component: () => BlockModal,
+        arguments: {
+            isNew: true,
+        },
     })
 }
 </script>

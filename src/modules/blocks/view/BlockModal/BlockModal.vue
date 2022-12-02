@@ -12,9 +12,20 @@ const { currentElement } = useElementGet()
 const { serializeElement } = useSerializeElement()
 const store = useEditorStore()
 
-const name = ref('')
+const props = defineProps({
+    arguments: {
+        type: Object,
+        default: () => ({}),
+    },
+})
+
+const name = ref(props.arguments.name ? props.arguments.name : '')
 const html = ref(
-    currentElement.value ? serializeElement(currentElement.value) : ''
+    props.arguments.html
+        ? props.arguments.html
+        : currentElement.value
+        ? serializeElement(currentElement.value)
+        : ''
 )
 
 const save = () => {
@@ -22,10 +33,18 @@ const save = () => {
         return
     }
 
-    store.addBlock({
-        name: name.value,
-        html: html.value,
-    })
+    if (props.arguments.isNew) {
+        store.addBlock({
+            name: name.value,
+            html: html.value,
+        })
+    } else {
+        store.setBlock(props.arguments.name, {
+            name: name.value,
+            html: html.value,
+        })
+    }
+
     closeModals()
 }
 </script>

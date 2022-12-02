@@ -12,6 +12,11 @@
 
     &__item-title {
         margin-bottom: 5px;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 110px;
     }
 
     &__actions {

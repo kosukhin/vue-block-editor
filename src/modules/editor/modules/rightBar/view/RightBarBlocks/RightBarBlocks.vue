@@ -1,13 +1,21 @@
 <script lang="ts" setup>
-import { useEditorStore, useElementAdd, useElementGet } from '@/modules/editor'
+import {
+    Block,
+    useEditorStore,
+    useElementAdd,
+    useElementGet,
+} from '@/modules/editor'
 import { storeToRefs } from 'pinia'
 import { useParseHtml } from '@/modules/parser'
+import BlockModal from '@/modules/blocks/view/BlockModal/BlockModal.vue'
+import { useModal } from '@/shared'
 
 const store = useEditorStore()
 const { blocks } = storeToRefs(store)
 const { parsePartialHtml } = useParseHtml()
 const { addElement } = useElementAdd()
 const { currentElement } = useElementGet()
+const { openModal } = useModal()
 
 const addBlock = (html: string) => {
     if (!currentElement.value) {
@@ -19,6 +27,24 @@ const addBlock = (html: string) => {
     if (root) {
         addElement(currentElement.value, root)
     }
+}
+
+const openBlockModal = (block: Block) => {
+    openModal({
+        title: 'Изменить блок',
+        component: () => BlockModal,
+        arguments: {
+            ...block,
+        },
+    })
+}
+
+const removeBlock = (block: Block) => {
+    if (!confirm('Удалить блок?')) {
+        return
+    }
+
+    store.removeBlock(block.name)
 }
 </script>
 
@@ -35,6 +61,12 @@ const addBlock = (html: string) => {
                         {{ block.name }}
                     </div>
                     <div class="right-bar-blocks__actions">
+                        <a href="#" @click.prevent="openBlockModal(block)">
+                            Изменить
+                        </a>
+                        <a href="#" @click.prevent="removeBlock(block)">
+                            Удалить
+                        </a>
                         <div>Добавить блок:</div>
                         <a href="#" @click.prevent="addBlock(block.html)"
                             >внутрь текущего</a

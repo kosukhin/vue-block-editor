@@ -14,7 +14,10 @@ const { modals, closeModals } = useModal()
         >
             <div class="modal__title">{{ modal.title }}</div>
             <div class="modal__content">
-                <component :is="modal.component()" />
+                <component
+                    :is="modal.component()"
+                    :arguments="modal.arguments"
+                />
             </div>
         </div>
     </div>

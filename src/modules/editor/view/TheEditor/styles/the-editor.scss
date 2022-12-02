@@ -39,4 +39,8 @@
         flex: 1;
         border: none;
     }
+
+    :deep(a) {
+        color: blue;
+    }
 }

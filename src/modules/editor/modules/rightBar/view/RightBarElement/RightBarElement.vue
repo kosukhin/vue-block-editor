@@ -11,6 +11,7 @@ import {
 import { useGetNodeName } from '@/modules/node'
 import { getElementLabel, isElementSignificant } from '@/shared'
 import { computed, ref } from 'vue'
+import { useTranslate } from '@/modules/i18n'
 import BaseInput from '@/shared/view/ui/BaseInput/BaseInput.vue'
 import BaseButton from '@/shared/view/ui/BaseButton/BaseButton.vue'
 import BaseIcon from '@/shared/view/ui/BaseIcon/BaseIcon.vue'
@@ -26,6 +27,7 @@ const { addElement } = useElementAdd()
 const { updateElement } = useElementUpdate()
 const { removeElement } = useElementRemove()
 const { moveUpChildElement, moveDownChildElement } = useMoveChildElement()
+const { translate } = useTranslate()
 
 const newChildNodeName = ref('')
 const currentElementValue = computed(() => currentElement.value?.value)
@@ -65,7 +67,7 @@ const updateValue = (newValue: string) => {
             v-if="currentElement.nodeName === '#text'"
             class="right-bar-element__block"
         >
-            <div class="subtitle">Содержимое</div>
+            <div class="subtitle">{{ translate('content') }}</div>
             <BaseTextarea
                 :key="`rightbar_content_${currentElementValue}`"
                 :model-value="currentElementValue"
@@ -73,7 +75,7 @@ const updateValue = (newValue: string) => {
             />
         </div>
         <div v-if="currentElement.parentNode" class="right-bar-element__block">
-            <div class="subtitle">Родитель</div>
+            <div class="subtitle">{{ translate('parent') }}</div>
             <a
                 class="right-bar-element__link"
                 href="#"
@@ -85,7 +87,7 @@ const updateValue = (newValue: string) => {
             </a>
         </div>
         <template v-if="currentElement.childNodes">
-            <div class="subtitle">Дочерние</div>
+            <div class="subtitle">{{ translate('children') }}</div>
             <div class="right-bar-element__items">
                 <div
                     v-for="child in significantChildNodes"

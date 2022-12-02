@@ -1,16 +1,15 @@
 <script lang="ts" setup>
 import type { PropType } from 'vue'
 import type { Attribute } from '@/modules/parser'
-import BaseInput from '@/shared/view/ui/BaseInput/BaseInput.vue'
-import TrashIcon from '@/shared/view/icons/TrashIcon.vue'
-import BaseIcon from '@/shared/view/ui/BaseIcon/BaseIcon.vue'
-import BaseButton from '@/shared/view/ui/BaseButton/BaseButton.vue'
-import AddIcon from '@/shared/view/icons/AddIcon.vue'
 import {
     useAttributeAdd,
     useAttributeRemove,
     useElementGet,
 } from '@/modules/editor'
+import TrashIcon from '@/shared/view/icons/TrashIcon.vue'
+import BaseIcon from '@/shared/view/ui/BaseIcon/BaseIcon.vue'
+import BaseButton from '@/shared/view/ui/BaseButton/BaseButton.vue'
+import AddIcon from '@/shared/view/icons/AddIcon.vue'
 import RightBarAttributeItem from '@/modules/editor/modules/rightBar/view/RightBarAttributeItem/RightBarAttributeItem.vue'
 
 defineProps({

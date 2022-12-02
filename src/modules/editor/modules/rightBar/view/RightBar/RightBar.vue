@@ -49,8 +49,12 @@ onMounted(() => {
     <div class="right-bar">
         <Tabs v-model="currentTab" class="right-bar__tabs">
             <template #header>
-                <TabHeaderItem tab="editor">Редактор</TabHeaderItem>
-                <TabHeaderItem tab="blocks">Блоки</TabHeaderItem>
+                <TabHeaderItem tab="editor">
+                    {{ translate('editor') }}
+                </TabHeaderItem>
+                <TabHeaderItem tab="blocks">
+                    {{ translate('blocks') }}
+                </TabHeaderItem>
             </template>
             <template #content>
                 <TabContent tab="editor">

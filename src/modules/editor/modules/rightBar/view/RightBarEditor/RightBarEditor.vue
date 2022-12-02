@@ -62,10 +62,10 @@ const openBlockModal = () => {
                 />
             </template>
             <BaseButton @click="openBlockModal">
-                Сохранить как блок
+                {{ translate('save_as_block') }}
             </BaseButton>
         </template>
-        <template v-else> Выберите элемент </template>
+        <template v-else> {{ translate('select_element') }} </template>
     </div>
 </template>
 

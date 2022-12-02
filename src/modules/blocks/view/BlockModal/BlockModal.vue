@@ -6,7 +6,9 @@ import { useSerializeElement } from '@/modules/parser'
 import BaseInput from '@/shared/view/ui/BaseInput/BaseInput.vue'
 import BaseButton from '@/shared/view/ui/BaseButton/BaseButton.vue'
 import BaseTextarea from '@/shared/view/ui/BaseTextarea/BaseTextarea.vue'
+import { useTranslate } from '@/modules/i18n'
 
+const { translate } = useTranslate()
 const { closeModals } = useModal()
 const { currentElement } = useElementGet()
 const { serializeElement } = useSerializeElement()
@@ -52,17 +54,19 @@ const save = () => {
 <template>
     <div class="create-block-modal">
         <div class="create-block-modal__row">
-            <label for="name">Название блока</label>
+            <label for="name">{{ translate('block_name') }}</label>
             <BaseInput id="name" v-model="name" />
         </div>
         <div class="create-block-modal__row">
-            <label for="html">Разметка</label>
+            <label for="html">{{ translate('template') }}</label>
             <BaseTextarea v-model="html" />
         </div>
         <hr />
         <div>
-            <BaseButton @click="save"> Сохранить </BaseButton>
-            <BaseButton @click="closeModals"> Отмена </BaseButton>
+            <BaseButton @click="save"> {{ translate('save') }} </BaseButton>
+            <BaseButton @click="closeModals">
+                {{ translate('cancel') }}
+            </BaseButton>
         </div>
     </div>
 </template>

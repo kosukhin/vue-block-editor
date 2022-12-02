@@ -17,6 +17,25 @@ const translationsRu: Dictionary<string> = {
     node_meta: 'Метатэг',
     node_title: 'Заголовок страницы',
     node_html: 'Документ',
+    block_name: 'Название блока',
+    template: 'Разметка',
+    save: 'Сохранить',
+    cancel: 'Отмена',
+    editor: 'Редактор',
+    blocks: 'Блоки',
+    change_block: 'Изменить блок',
+    remove_block: 'Удалить блок?',
+    add_block: 'Добавить блок',
+    change: 'Изменить',
+    remove: 'Удалить',
+    inside_current: 'внутрь текущего',
+    you_dont_have_blocks:
+        'У вас нет блоков, создайте новый блок из текущего во вкладке Редактор',
+    save_as_block: 'Сохранить как блок',
+    select_element: 'Выберите элемент',
+    content: 'Содержимое',
+    parent: 'Родитель',
+    children: 'Дочерние',
 }
 
 const translationsEn: Dictionary<string> = {
@@ -36,6 +55,25 @@ const translationsEn: Dictionary<string> = {
     node_meta: 'Meta tag',
     node_title: 'Page title',
     node_html: 'Document',
+    block_name: 'Block name',
+    template: 'Template',
+    save: 'Save',
+    cancel: 'Cancel',
+    editor: 'Editor',
+    blocks: 'Blocks',
+    change_block: 'Change block',
+    remove_block: 'Remove block?',
+    add_block: 'Add block',
+    change: 'Change',
+    remove: 'Remove',
+    inside_current: 'inside current',
+    you_dont_have_blocks:
+        'You dont have blocks, make new from current in Editor tab',
+    save_as_block: 'Save as block',
+    select_element: 'Select element',
+    content: 'Content',
+    parent: 'Parent',
+    children: 'Children',
 }
 
 export const translations: Dictionary<Dictionary<string>> = {

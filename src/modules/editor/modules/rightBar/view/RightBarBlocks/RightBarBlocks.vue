@@ -7,10 +7,12 @@ import {
 } from '@/modules/editor'
 import { storeToRefs } from 'pinia'
 import { useParseHtml } from '@/modules/parser'
-import BlockModal from '@/modules/blocks/view/BlockModal/BlockModal.vue'
 import { useModal } from '@/shared'
+import BlockModal from '@/modules/blocks/view/BlockModal/BlockModal.vue'
+import { useTranslate } from '@/modules/i18n'
 
 const store = useEditorStore()
+const { translate } = useTranslate()
 const { blocks } = storeToRefs(store)
 const { parsePartialHtml } = useParseHtml()
 const { addElement } = useElementAdd()
@@ -31,7 +33,7 @@ const addBlock = (html: string) => {
 
 const openBlockModal = (block: Block) => {
     openModal({
-        title: 'Изменить блок',
+        title: translate('change_block'),
         component: () => BlockModal,
         arguments: {
             ...block,
@@ -40,7 +42,7 @@ const openBlockModal = (block: Block) => {
 }
 
 const removeBlock = (block: Block) => {
-    if (!confirm('Удалить блок?')) {
+    if (!confirm(translate('remove_block'))) {
         return
     }
 
@@ -62,22 +64,21 @@ const removeBlock = (block: Block) => {
                     </div>
                     <div class="right-bar-blocks__actions">
                         <a href="#" @click.prevent="openBlockModal(block)">
-                            Изменить
+                            {{ translate('change') }}
                         </a>
                         <a href="#" @click.prevent="removeBlock(block)">
-                            Удалить
+                            {{ translate('remove') }}
                         </a>
-                        <div>Добавить блок:</div>
-                        <a href="#" @click.prevent="addBlock(block.html)"
-                            >внутрь текущего</a
-                        >
+                        <div>{{ translate('add_block') }}:</div>
+                        <a href="#" @click.prevent="addBlock(block.html)">
+                            {{ translate('inside_current') }}
+                        </a>
                     </div>
                 </div>
             </div>
         </template>
         <template v-else>
-            У вас нет блоков, создайте новый блок из текущего во вкладке
-            Редактор
+            {{ translate('you_dont_have_blocks') }}
         </template>
     </div>
 </template>

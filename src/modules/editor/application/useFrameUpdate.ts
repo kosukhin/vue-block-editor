@@ -1,6 +1,7 @@
 import { useParseHtml } from '@/modules/parser'
 import { useRenderElement } from '@/modules/renderer'
 import { useElementsHash } from '@/modules/editor'
+import { nextTick } from 'vue'
 
 export const useFrameUpdate = () => {
     const { parseHtml } = useParseHtml()
@@ -10,7 +11,9 @@ export const useFrameUpdate = () => {
     const updateFrame = (html: string) => {
         const root = parseHtml(html)
         buildElementsHashByRoot(root)
-        renderElement(root)
+        nextTick().then(() => {
+            renderElement(root)
+        })
 
         return { root }
     }

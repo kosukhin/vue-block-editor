@@ -2,10 +2,11 @@
 import TheEditor from '@/modules/editor/view/TheEditor/TheEditor.vue'
 import { useFileSystemAccess } from '@vueuse/core'
 import { computed, ref } from 'vue'
+import html from './view/default'
 
 const { isSupported, open, data, save } = useFileSystemAccess({})
 
-const newHtml = ref()
+const newHtml = ref(html)
 const innerData = computed<string>({
     get: () => String(data.value),
     set: (newValue: string) => (data.value = newValue),
@@ -17,7 +18,7 @@ const openFile = async () => {
     }
 
     await open()
-    newHtml.value = data.value
+    newHtml.value = String(data.value)
 }
 
 const saveFile = () => {

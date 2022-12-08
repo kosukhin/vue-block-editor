@@ -50,6 +50,9 @@ watch(
     (newHtml) => {
         const { root: updatedRoot } = updateFrame(newHtml)
         root.value = updatedRoot
+    },
+    {
+        immediate: true,
     }
 )
 </script>

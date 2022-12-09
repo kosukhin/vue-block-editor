@@ -45,6 +45,6 @@ const saveFile = () => {
     </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import './view/styles/app';
 </style>

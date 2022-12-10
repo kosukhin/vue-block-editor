@@ -62,6 +62,7 @@ watch(
         <div class="the-editor__content">
             <iframe :id="frameId" ref="frame" class="the-editor__frame" />
         </div>
+        123
         <RightBar v-if="root" :root="root" class="the-editor__right-bar" />
     </div>
 </template>
